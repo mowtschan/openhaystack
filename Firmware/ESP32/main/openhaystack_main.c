@@ -55,7 +55,7 @@ static esp_ble_adv_params_t ble_adv_params = {
     .own_addr_type      = BLE_ADDR_TYPE_RANDOM,
     // All channels
     .channel_map        = ADV_CHNL_ALL,
-    // Allow both scan and connection requests from anyone. 
+    // Allow both scan and connection requests from anyone.
     .adv_filter_policy = ADV_FILTER_ALLOW_SCAN_ANY_CON_ANY,
 };
 
@@ -140,6 +140,8 @@ void app_main(void)
 
     set_addr_from_key(rnd_addr, public_key);
     set_payload_from_key(adv_data, public_key);
+
+    ESP_LOGI(LOG_TAG, "public_key: %02x %02x %02x %02x ...", adv_data[7], adv_data[8], adv_data[9], adv_data[10]);
 
     ESP_LOGI(LOG_TAG, "using device address: %02x %02x %02x %02x %02x %02x", rnd_addr[0], rnd_addr[1], rnd_addr[2], rnd_addr[3], rnd_addr[4], rnd_addr[5]);
 
